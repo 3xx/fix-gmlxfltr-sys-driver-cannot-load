@@ -1,6 +1,5 @@
 # 🛠 GMLXDFltr.sys Driver Fix
 
-> Permanent fix for the "Driver cannot load on this device" error caused by Windows Security (Memory Integrity / Core Isolation)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-blue?style=for-the-badge"/>
@@ -23,9 +22,25 @@
 
 Windows may block the following driver:
 
+**GMLXDFltr.sys**
+
 ---
 
+## ⚠️ CRITICAL WARNING (READ BEFORE FIX)
 
+Before starting the fix:
+
+- You MUST completely disconnect **Attack Shark Mouse**
+- Remove:
+  - USB dongle  
+  - Wireless receiver  
+  - Any related device  
+
+Failure to do this may cause:
+- Driver reinstall during removal  
+- Fix not working properly  
+
+---
 
 ## 💥 Solution (Permanent Fix)
 
@@ -46,3 +61,4 @@ Run the following commands in **Command Prompt (Admin):**
 sc.exe delete GMLXDFltr
 del C:\Windows\System32\drivers\GMLXDFltr.sys
 pnputil /delete-driver oem77.inf /uninstall /force
+shutdown /r /t 0
