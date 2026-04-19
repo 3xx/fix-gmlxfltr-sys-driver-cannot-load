@@ -53,12 +53,30 @@ Failure to do this may cause:
 
 ---
 
-## ⚙️ Fix Commands
-
-Run the following commands in **Command Prompt (Admin):**
-
-```bash
-sc.exe delete GMLXDFltr
-del C:\Windows\System32\drivers\GMLXDFltr.sys
-pnputil /delete-driver oem77.inf /uninstall /force
-shutdown /r /t 0
+> ⚠️ IMPORTANT
+>
+> The value `oemXXX.inf` is NOT fixed and will be different on each system.
+>
+> You MUST first run:
+>
+> ```bash
+> pnputil /enum-drivers | findstr /i GMLXDFltr
+> ```
+>
+> Then look for a line like:
+>
+> ```bash
+> Published Name : oemXX.inf
+> ```
+>
+> Replace `oemXXX.inf` with the exact value shown on your system.
+>
+> ❌ Wrong:
+> ```bash
+> pnputil /delete-driver oemXXX.inf /uninstall /force
+> ```
+>
+> ✅ Correct example:
+> ```bash
+> pnputil /delete-driver oem77.inf /uninstall /force
+> ```
