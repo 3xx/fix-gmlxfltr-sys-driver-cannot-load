@@ -1,6 +1,5 @@
 # 🛠 GMLXDFltr.sys Driver Fix
 
-
 <p align="center">
   <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-blue?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Status-Stable-success?style=for-the-badge"/>
@@ -26,57 +25,33 @@ Windows may block the following driver:
 
 ---
 
-## ⚠️ CRITICAL WARNING (READ BEFORE FIX)
+## ⚠️ CRITICAL WARNING
 
-Before starting the fix:
+Before starting the fix, you MUST completely disconnect the **Attack Shark Mouse** and remove all related devices, including the USB dongle, wireless receiver, or any connected accessory.
 
-- You MUST completely disconnect **Attack Shark Mouse**
-- Remove:
-  - USB dongle  
-  - Wireless receiver  
-  - Any related device  
-
-Failure to do this may cause:
-- Driver reinstall during removal  
-- Fix not working properly  
+If you do not disconnect the device first, the driver may reinstall automatically during the removal process, and the fix may fail.
 
 ---
 
 ## 💥 Solution (Permanent Fix)
 
-> ⚠️ This method completely removes the driver from your system
+> ⚠️ This method completely removes the driver from your system.
 
 ### 🧾 Requirements
 
-- Administrator privileges  
-- Command Prompt (Run as Administrator)  
+- Administrator privileges
+- Command Prompt (Run as Administrator)
 
 ---
 
-> ⚠️ IMPORTANT
->
-> The value `oemXXX.inf` is NOT fixed and will be different on each system.
->
-> You MUST first run:
->
-> ```bash
-> pnputil /enum-drivers | findstr /i GMLXDFltr
-> ```
->
-> Then look for a line like:
->
-> ```bash
-> Published Name : oemXX.inf
-> ```
->
-> Replace `oemXXX.inf` with the exact value shown on your system.
->
-> ❌ Wrong:
-> ```bash
-> pnputil /delete-driver oemXXX.inf /uninstall /force
-> ```
->
-> ✅ Correct example:
-> ```bash
-> pnputil /delete-driver oem77.inf /uninstall /force
-> ```
+## ⚙️ Fix Commands
+
+> ⚠️ `oemXXX.inf` is NOT fixed and will be different on each system.  
+> First run the detection command below, find the matching `Published Name`, then replace `oemXXX.inf` with the exact value shown on your system.
+
+```bash
+sc.exe delete GMLXDFltr
+del C:\Windows\System32\drivers\GMLXDFltr.sys
+pnputil /enum-drivers | findstr /i GMLXDFltr
+pnputil /delete-driver oemXXX.inf /uninstall /force
+shutdown /r /t 0
