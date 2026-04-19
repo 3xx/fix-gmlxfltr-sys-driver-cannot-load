@@ -25,17 +25,7 @@ Windows may block the following driver:
 
 ---
 
-## 🧠 Root Cause
 
-This issue is caused by a Windows security feature:
-
-### 🔐 Memory Integrity (Core Isolation)
-
-- Enforces kernel-level protection  
-- Blocks unsigned or incompatible drivers  
-- Prevents legacy drivers from loading  
-
----
 
 ## 💥 Solution (Permanent Fix)
 
